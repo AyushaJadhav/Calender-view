@@ -1,14 +1,20 @@
+import { People24Regular, Tag24Regular, CheckboxChecked24Regular } from "@fluentui/react-icons";
+
 const TableHeader = () => {
-    const headers = ["Summary", "Status", "Assignee", "Category"];
-  
-    return (
-      <div className="grid grid-cols-4 gap-4 bg-gray-100 px-4 py-2 rounded-md text-gray-600 font-semibold text-sm">
-        {headers.map((header) => (
-          <div key={header}>{header}</div>
-        ))}
-      </div>
-    );
-  };
-  
-  export default TableHeader;
-  
+  return (
+    <div className="grid grid-cols-[1.5fr_0.8fr_1fr_1fr] items-center font-semibold py-2 border-b px-6 pl-8">
+      <span>Summary</span>
+      <span className="flex items-center justify-center">
+        <CheckboxChecked24Regular className="mr-1" /> Status
+      </span>
+      <span className="flex items-center justify-center">
+        <People24Regular className="mr-1" /> Assignee
+      </span>
+      <span className="flex items-center justify-center">
+        <Tag24Regular className="mr-1" /> Category
+      </span>
+    </div>
+  );
+};
+
+export default TableHeader;
