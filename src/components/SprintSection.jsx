@@ -14,20 +14,20 @@ const SprintSection = ({ sprintData }) => {
   });
 
   useEffect(() => {
-    setTasks([...sprintData.tasks]); // Ensure tasks update when sprintData changes
+    setTasks([...sprintData.tasks]); 
   }, [sprintData]);
 
-  // ✅ Handle Create Task Click
+  //  Handle Create Task Click
   const handleCreateClick = () => {
     setIsModalOpen(true);
   };
 
-  // ✅ Handle Input Change
+  //  Handle Input Change
   const handleInputChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
 
-  // ✅ Add New Task
+  //  Add New Task
   const handleSubmit = () => {
     if (newTask.name.trim()) {
       const newTaskData = { id: Date.now(), ...newTask, completed: false };
@@ -37,7 +37,7 @@ const SprintSection = ({ sprintData }) => {
     }
   };
 
-  // ✅ Delete Task
+  //  Delete Task
   const handleDelete = (taskId) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   };
@@ -112,17 +112,15 @@ const SprintSection = ({ sprintData }) => {
             </select>
 
             {/* Assignee Dropdown */}
-            <select
+            <input
               name="assignee"
+              placeholder="Add Assignee"
               value={newTask.assignee}
               onChange={handleInputChange}
               className="w-full p-2 border rounded mb-2"
-            >
-              <option value="">Select Assignee</option>
-              <option value="John Doe">John Doe</option>
-              <option value="Jane Smith">Jane Smith</option>
-              <option value="Maya Johnson">Maya Johnson</option>
-            </select>
+            />
+               
+            
 
             {/* Category Input */}
             <input
