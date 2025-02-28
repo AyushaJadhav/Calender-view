@@ -50,7 +50,7 @@ const TaskBoard = () => {
         <div className="flex items-center space-x-2">
           <SearchBox
             placeholder="Search..."
-            styles={{ root: { width: 200 } }}
+            styles={{ root: { width: 320 } }}
             onChange={(e, newValue) => setSearchQuery(newValue)}
             value={searchQuery}
           />
@@ -61,14 +61,14 @@ const TaskBoard = () => {
             placeholder="Add user"
             value={newUser}
             onChange={(e) => setNewUser(e.target.value)}
-            className="border rounded-md px-2 py-1 w-32"
+            className="border rounded-md px-8 py-1 w-32"
           />
           <button onClick={addUser} className="bg-blue-500 text-white px-3 py-1 rounded-md">
             Add
           </button>
         </div>
 
-        <div className="relative bg-gray-200 px-4 py-2 rounded-md cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
+        <div className="relative bg-gray-200 px-4 py-1 rounded-md cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
           Group by
           {dropdownOpen && (
             <div className="absolute left-full top-1/2 -translate-y-1/2 w-40 bg-white shadow-lg border rounded-md z-50">
