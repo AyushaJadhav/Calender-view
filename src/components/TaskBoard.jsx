@@ -40,20 +40,45 @@ const TaskBoard = () => {
     setFilteredTasks(newTasks);
     setCurrentFilter(`${type.charAt(0).toUpperCase() + type.slice(1)}: ${value}`);
   };
+ //  Function to Filter Tasks by Search Query
+ // Fixing the search function
+ const handleSearch = (query) => {
+  setSearchQuery(query);
 
-  return (
-    
-    <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-md">
-      <h1 className="text-2xl font-semibold mb-4">List View Board</h1>
+  if (!query.trim()) {
+    setFilteredTasks(tasks);
+    return;
+  }
 
-      <div className="flex justify-between items-center mb-4 relative">
-        <div className="flex items-center space-x-2">
-          <SearchBox
-            placeholder="Search..."
-            styles={{ root: { width: 320 } }}
-            onChange={(e, newValue) => setSearchQuery(newValue)}
-            value={searchQuery}
-          />
+  const lowerQuery = query.toLowerCase();
+
+  const newTasks = tasks
+    .map((sprint) => ({
+      ...sprint,
+      tasks: sprint.tasks.filter(
+        (task) =>
+          task.name.toLowerCase().includes(lowerQuery) ||
+          task.assignee.toLowerCase().includes(lowerQuery) ||
+          task.category.toLowerCase().includes(lowerQuery)
+      ),
+    }))
+    .filter((sprint) => sprint.tasks.length > 0);
+
+  setFilteredTasks(newTasks);
+};
+
+return (
+  <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-md">
+    <h1 className="text-2xl font-semibold mb-4">List View Board</h1>
+
+    <div className="flex justify-between items-center mb-4 relative">
+      <div className="flex items-center space-x-2">
+        <SearchBox
+          placeholder="Search..."
+          styles={{ root: { width: 320 } }}
+          onChange={(e, newValue) => handleSearch(newValue || "")}
+          value={searchQuery}
+        />
 
           
           <input
